@@ -37,13 +37,13 @@ echo "<div style='padding:4px; border:1px solid red; color:red'>" . $error
 <p>ID: <?php echo $ids; ?></p>
 <?php } ?>
 
-<strong>Date: *</strong> <input type="text" name="firstname"
+<strong>Date: *</strong> <input type="text" name="dates"
 value="<?php echo $dates; ?>"/><br/>
-<strong>Fixture: *</strong> <input type="text" name="lastname"
+<strong>Fixture: *</strong> <input type="text" name="fixture"
 value="<?php echo $fixture; ?>"/><br/>
-<strong>Venue: *</strong> <input type="text" name="Available"
+<strong>Venue: *</strong> <input type="text" name="venue"
 value="<?php echo $venue; ?>"/><br/>
-<strong>Result/KO Time: *</strong> <input type="text" name="Available"
+<strong>Result/KO Time: *</strong> <input type="text" name="Result_KO_Time"
 value="<?php echo $Result_KO_Time; ?>"/>
 <p>* required</p>
 <input type="submit" name="submit" value="Submit" />
