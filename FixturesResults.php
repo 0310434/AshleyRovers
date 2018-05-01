@@ -34,7 +34,7 @@
 include 'connection.php';
 
 // get the records from the database
-if ($result = $dbcon->query("SELECT * FROM Fixtures ORDER BY id"))
+if ($result = $dbcon->query("SELECT * FROM Fixtures ORDER BY ids"))
 {
 // display records if there are records to display
 if ($result->num_rows > 0)
