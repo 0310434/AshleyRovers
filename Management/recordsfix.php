@@ -13,18 +13,18 @@ include 'auth.php';
 
 // creates the new/edit record form
 // form  used multiple times created function
-function renderForm($dates = '', $fixture ='',$venue='',$Result_KO_Time= '', $error = '', $id = '')
+function renderForm($dates = '', $fixture ='',$venue='',$Result_KO_Time= '', $error = '', $ids = '')
 { ?>
 
 <html>
 <head>
 <title>
-<?php if ($id != '') { echo "Edit Record"; } else { echo "New Record"; } ?>
+<?php if ($ids != '') { echo "Edit Record"; } else { echo "New Record"; } ?>
 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
-<h1><?php if ($id != '') { echo "Edit Record"; } else { echo "New Record"; } ?></h1>
+<h1><?php if ($ids != '') { echo "Edit Record"; } else { echo "New Record"; } ?></h1>
 <?php if ($error != '') {
 echo "<div style='padding:4px; border:1px solid red; color:red'>" . $error
 . "</div>";
@@ -32,9 +32,9 @@ echo "<div style='padding:4px; border:1px solid red; color:red'>" . $error
 
 <form action="" method="post">
 <div>
-<?php if ($id != '') { ?>
-<input type="hidden" name="id" value="<?php echo $id; ?>" />
-<p>ID: <?php echo $id; ?></p>
+<?php if ($ids != '') { ?>
+<input type="hidden" name="ids" value="<?php echo $ids; ?>" />
+<p>ID: <?php echo $ids; ?></p>
 <?php } ?>
 
 <strong>Date: *</strong> <input type="text" name="firstname"
@@ -62,34 +62,34 @@ EDIT RECORD
 
 */
 // if the 'id' variable is set in the URL, we know that we need to edit a record
-if (isset($_GET['id']))
+if (isset($_GET['ids']))
 {
 // if the form's submit button is clicked, we need to process the form
 if (isset($_POST['submit']))
 {
 // make sure the 'id' in the URL is valid
-if (is_numeric($_POST['id']))
+if (is_numeric($_POST['ids']))
 {
 // get variables from the URL/form
-$id = $_POST['id'];
+$ids = $_POST['ids'];
 $dates = htmlentities($_POST['dates'], ENT_QUOTES);
 $fixture= htmlentities($_POST['fixture'], ENT_QUOTES);
 $venue = htmlentities($_POST['venue'], ENT_QUOTES);
 $Result_KO_Time = htmlentities($_POST['Result_KO_Time'], ENT_QUOTES);
-// check that firstname and lastname are both not empty
+// check boxes not left empty
 if ($dates == '' || $fixture == '' || $venue== '' )
 {
 // if they are empty, show an error message and display the form
 $error = 'ERROR: Please fill in all required fields!';
-renderForm($dates, $fixture,$venue,$Result_KO_Time, $error, $id);
+renderForm($dates, $fixture,$venue,$Result_KO_Time, $error, $ids);
 }
 else
 {
 // if everything is fine, update the record in the database
 if ($stmt = $dbcon->prepare("UPDATE Fixtures SET dates = ?, fixture = ?,venue = ?,Result_KO_Time = ?
-WHERE id=?"))
+WHERE ids=?"))
 {
-$stmt->bind_param("ssssi", $dates, $fixture,$venue,$Result_KO_Time, $id);
+$stmt->bind_param("ssssi", $dates, $fixture,$venue,$Result_KO_Time, $ids);
 $stmt->execute();
 $stmt->close();
 }
@@ -113,22 +113,22 @@ echo "Error!";
 else
 {
 // make sure the 'id' value is valid
-if (is_numeric($_GET['id']) && $_GET['id'] > 0)
+if (is_numeric($_GET['ids']) && $_GET['ids'] > 0)
 {
 // get 'id' from URL
-$id = $_GET['id'];
+$ids = $_GET['ids'];
 
 // get the record from the database
-if($stmt = $dbcon->prepare("SELECT * FROM Fixtures WHERE id=?"))
+if($stmt = $dbcon->prepare("SELECT * FROM Fixtures WHERE ids=?"))
 {
-$stmt->bind_param("i", $id);
+$stmt->bind_param("i", $ids);
 $stmt->execute();
 
-$stmt->bind_result($id, $dates, $fixture,$venue,$Result_KO_Time);
+$stmt->bind_result($ids, $dates, $fixture,$venue,$Result_KO_Time);
 $stmt->fetch();
 
 // show the form
-renderForm($dates, $fixture,$venue,$Result_KO_Time, $id);
+renderForm($dates, $fixture,$venue,$Result_KO_Time, $ids);
 
 $stmt->close();
 }

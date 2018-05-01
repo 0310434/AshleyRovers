@@ -114,7 +114,7 @@ $dbcon->close();
 include '../connection.php';
 include 'auth.php';
 // get the records from the database
-if ($result = $dbcon->query("SELECT * FROM Fixtures ORDER BY id"))
+if ($result = $dbcon->query("SELECT * FROM Fixtures ORDER BY ids"))
 {
 // display records if there are records to display
 if ($result->num_rows > 0)
@@ -129,13 +129,13 @@ while ($row = $result->fetch_object())
 {
 // set up a row for each record
 echo "<tr>";
-echo "<td>" . $row->id. "</td>";
+echo "<td>" . $row->ids. "</td>";
 echo "<td>" . $row->dates . "</td>";
 echo "<td>" . $row->fixture . "</td>";
 echo "<td>" . $row->venue. "</td>";
 echo "<td>" . $row->Result_KO_Time. "</td>";
-echo "<td><a href='recordsfix.php?id=" . $row->id . "'>Edit</a></td>";
-echo "<td><a href='deletefix.php?id=" . $row->id . "'>Delete</a></td>";
+echo "<td><a href='recordsfix.php?ids=" . $row->ids . "'>Edit</a></td>";
+echo "<td><a href='deletefix.php?ids=" . $row->ids . "'>Delete</a></td>";
 echo "</tr>";
 
 
