@@ -4,15 +4,15 @@
 include '../connection.php';
 include 'auth.php';
 // confirm that the 'id' variable has been set
-if (isset($_GET['id']) && is_numeric($_GET['id']))
+if (isset($_GET['ids']) && is_numeric($_GET['ids']))
 {
 // get the 'id' variable from the URL
-$id = $_GET['id'];
+$id = $_GET['ids'];
 
 // delete record from database
-if ($stmt = $dbcon->prepare("DELETE FROM Fixtures WHERE id = ? LIMIT 1"))
+if ($stmt = $dbcon->prepare("DELETE FROM fixtures WHERE ids = ? LIMIT 1"))
 {
-$stmt->bind_param("i",$id);
+$stmt->bind_param("i",$ids);
 $stmt->execute();
 $stmt->close();
 }

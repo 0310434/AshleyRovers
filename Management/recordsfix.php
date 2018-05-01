@@ -86,7 +86,7 @@ renderForm($dates, $fixture,$venue,$Result_KO_Time, $error, $ids);
 else
 {
 // if everything is fine, update the record in the database
-if ($stmt = $dbcon->prepare("UPDATE Fixtures SET dates = ?, fixture = ?,venue = ?,Result_KO_Time = ?
+if ($stmt = $dbcon->prepare("UPDATE fixtures SET dates = ?, fixture = ?,venue = ?,Result_KO_Time = ?
 WHERE ids=?"))
 {
 $stmt->bind_param("ssssi", $dates, $fixture,$venue,$Result_KO_Time, $ids);
@@ -119,7 +119,7 @@ if (is_numeric($_GET['ids']) && $_GET['ids'] > 0)
 $ids = $_GET['ids'];
 
 // get the record from the database
-if($stmt = $dbcon->prepare("SELECT * FROM Fixtures WHERE ids=?"))
+if($stmt = $dbcon->prepare("SELECT * FROM fixtures WHERE ids=?"))
 {
 $stmt->bind_param("i", $ids);
 $stmt->execute();
@@ -174,7 +174,7 @@ renderForm($dates, $fixture,$venue,$Result_KO_Time, $error);
 else
 {
 // insert the new record into the database
-if ($stmt = $dbcon->prepare("INSERT Fixtures (dates, fixture,venue,Result_KO_Time) VALUES (?,?,?,?)"))
+if ($stmt = $dbcon->prepare("INSERT fixtures (dates, fixture,venue,Result_KO_Time) VALUES (?,?,?,?)"))
 {
 $stmt->bind_param("ssss", $dates, $fixture,$venue,$Result_KO_Time);
 $stmt->execute();
