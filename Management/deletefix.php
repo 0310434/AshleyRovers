@@ -7,7 +7,7 @@ include 'auth.php';
 if (isset($_GET['ids']) && is_numeric($_GET['ids']))
 {
 // get the 'id' variable from the URL
-$id = $_GET['ids'];
+$ids = $_GET['ids'];
 
 // delete record from database
 if ($stmt = $dbcon->prepare("DELETE FROM fixtures WHERE ids = ? LIMIT 1"))
