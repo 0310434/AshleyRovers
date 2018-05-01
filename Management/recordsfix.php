@@ -68,7 +68,7 @@ if (isset($_GET['ids']))
 if (isset($_POST['submit']))
 {
 // make sure the 'id' in the URL is valid
-if (is_numeric($_POST['ids']))
+    if (is_numeric($_POST['ids']))
 {
 // get variables from the URL/form
 $ids = $_POST['ids'];
@@ -77,7 +77,7 @@ $fixture= htmlentities($_POST['fixture'], ENT_QUOTES);
 $venue = htmlentities($_POST['venue'], ENT_QUOTES);
 $Result_KO_Time = htmlentities($_POST['Result_KO_Time'], ENT_QUOTES);
 // check boxes not left empty
-if ($dates == '' || $fixture == '' || $venue== '' )
+if ($dates == '' || $fixture == '' || $venue== '' || $Result_KO_Time=='')
 {
 // if they are empty, show an error message and display the form
 $error = 'ERROR: Please fill in all required fields!';
