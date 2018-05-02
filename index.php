@@ -211,7 +211,7 @@ function joinfunction() {
     
     <footer class="col-md-12">
         
-    <p> 2018 Scott Birnie</p>
+    <p> 2018 Scott Birnie<br> All images taken from Pexels.com and club badge desigend on designevo.com</p>
     </footer>
   </div> <!--End of Container-->
 
