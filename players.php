@@ -2,7 +2,7 @@
 
  
 include('connection.php');
-include("../login/auth.php"); //include auth.php file on all secure pages 
+include("auth.php"); //include auth.php file on all secure pages
 ?>
 <!DOCTYPE html>
 <html>
